@@ -78,14 +78,14 @@ def start_bot():
 
     # Получаем ID канала
     channel_usernames = [
-        # 'smart_signal_free',
+        'smart_signal_free',
         'YovioTrade',
-        # 'troshin_official', # поменять на свою рекламу
-        # 'marzherubs',
-        # 'Makar_Potapov', # убраны видео
-        # 'Whale_Hunter_Crypto', # убрана реклама
-        # 'roman_blog_crypto',
-        # 'cryptobarbos', # отзывы
+        'troshin_official', # поменять на свою рекламу
+        'marzherubs',
+        'Makar_Potapov', # убраны видео
+        'Whale_Hunter_Crypto', # убрана реклама
+        'roman_blog_crypto',
+        'cryptobarbos', # отзывы
     ]
 
     # print(channel_usernames)
