@@ -23,10 +23,6 @@ def process_message(message, channel_username):
     if channel_username == 'marzherubs':
         message = re.sub(r'http\S+', 'https://t.me/Abramov_Trade', message)  # удалить все ссылки
 
-    if channel_username == 'troshin_official':
-        message = re.sub(r'http\S+', 'https://t.me/Abramov_Trade', message)  # удалить все ссылки
-        message = re.sub(r'@troshin_official', '@abramov_trader', message)  # удалить все ссылки
-
     if channel_username == 'Whale_Hunter_Crypto':
         message = re.sub(r'http\S+', '', message) # удалить все ссылки
         message = message.split('Не забывайте ставить', 1)[0]
@@ -35,7 +31,7 @@ def process_message(message, channel_username):
     if channel_username == "cryptobarbos":
         message = message + "\n#Отзывы"
 
-    message = message + "\n✏️ Связь со мной: @abramov_trade"
+    message = message + "\n✏️ Связь со мной: @abramov_trader"
     print(message)
     return message
 
@@ -78,9 +74,9 @@ def start_bot():
 
     # Получаем ID канала
     channel_usernames = [
+        # 'troshin_official',
         'smart_signal_free',
         'YovioTrade',
-        'troshin_official', # поменять на свою рекламу
         'marzherubs',
         'Makar_Potapov', # убраны видео
         'Whale_Hunter_Crypto', # убрана реклама
@@ -110,7 +106,7 @@ def start_bot():
 
                 send_message_channel(message, channel_username)
 
-        # Ждем 60 секунд, чтобы не нагружать серверы Telegram
+        # Ждем 2 секунды, чтобы не нагружать серверы Telegram
         time.sleep(2)
 
 if __name__ == "__main__":
