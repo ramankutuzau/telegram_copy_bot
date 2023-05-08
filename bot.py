@@ -14,7 +14,6 @@ session_file = 'my_telegram_session'
 client = TelegramClient(session_file, api_id, api_hash)
 
 def process_message(message, channel_username):
-
     if r"Открыли доступ" in message:
         print(f'Реклама "Открыли доступ" {channel_username} ')
         return None  # Возвращаем None, если сообщение содержит "Открыли доступ"
@@ -24,6 +23,10 @@ def process_message(message, channel_username):
     if channel_username == 'marzherubs':
         message = re.sub(r'http\S+', 'https://t.me/Abramov_Trade', message)  # удалить все ссылки
 
+    if channel_username == 'troshin_official':
+        message = re.sub(r'http\S+', 'https://t.me/Abramov_Trade', message)  # удалить все ссылки
+        message = re.sub(r'@troshin_official', '@abramov_trader', message)  # удалить все ссылки
+
     if channel_username == 'Whale_Hunter_Crypto':
         message = re.sub(r'http\S+', '', message) # удалить все ссылки
         message = message.split('Не забывайте ставить', 1)[0]
@@ -31,6 +34,9 @@ def process_message(message, channel_username):
 
     if channel_username == "cryptobarbos":
         message = message + "\n#Отзывы"
+
+    message = message + "\n✏️ Связь со мной: @abramov_trade"
+    print(message)
     return message
 
 # Определяем функцию для отправки сообщения в канал
@@ -53,8 +59,11 @@ def send_message_channel(message,channel_username):
                 video_data = client.download_media(message.media)
                 video = telebot.types.InputMediaVideo(open(video_data, 'rb'), caption=message_text)
                 media_list.append(video)
+        try:
+            bot.send_media_group(chat_id='-1001918056588', media=media_list)
+        except:
+            bot.send_message(chat_id='-1001918056588', text=message_text)
 
-        bot.send_media_group(chat_id='-1001918056588', media=media_list)
     else:
         # Отправляем текстовое сообщение в канал
         bot.send_message(chat_id='-1001918056588', text=message_text)
@@ -69,13 +78,14 @@ def start_bot():
 
     # Получаем ID канала
     channel_usernames = [
-        'smart_signal_free',
+        # 'smart_signal_free',
         'YovioTrade',
-        'marzherubs',
-        'Makar_Potapov', # убраны видео
-        'Whale_Hunter_Crypto', # убрана реклама
-        'roman_blog_crypto',
-        'cryptobarbos', # отзывы
+        # 'troshin_official', # поменять на свою рекламу
+        # 'marzherubs',
+        # 'Makar_Potapov', # убраны видео
+        # 'Whale_Hunter_Crypto', # убрана реклама
+        # 'roman_blog_crypto',
+        # 'cryptobarbos', # отзывы
     ]
 
     # print(channel_usernames)
@@ -97,10 +107,9 @@ def start_bot():
                 last_message_ids[channel_username] = message.id
 
                 # Отправляем сообщение в другой канал
-                try:
-                    send_message_channel(message, channel_username)
-                except:
-                    print("error")
+
+                send_message_channel(message, channel_username)
+
         # Ждем 60 секунд, чтобы не нагружать серверы Telegram
         time.sleep(2)
 
