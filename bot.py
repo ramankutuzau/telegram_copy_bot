@@ -5,10 +5,10 @@ from telethon import TelegramClient, sync, types
 import telebot
 
 # Параметры авторизации
-api_id = 29353446
-api_hash = 'fb369ffeb87695fa2b553e78a8c480b4'
-phone = '+48724409385'
-session_file = 'my_telegram_session'
+api_id = 
+api_hash = ''
+phone = ''
+session_file = ''
 
 # Создаем клиента Telegram
 client = TelegramClient(session_file, api_id, api_hash)
