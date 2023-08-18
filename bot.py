@@ -40,7 +40,7 @@ def send_message_channel(message,channel_username):
     message_text = process_message(message.raw_text, channel_username)
     if message_text == None:
         return None
-    bot = telebot.TeleBot('6046783189:AAFNCy8j2enPqb1E-tqQ8lYRJlS3M8YpIvA')
+    bot = telebot.TeleBot('')
 
     # If the message contains media, send it as a photo or video
     if message.media:
